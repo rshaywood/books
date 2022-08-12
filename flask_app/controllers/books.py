@@ -12,9 +12,9 @@ def new_book():
         'title': request.form['title'],
         'num_of_pages': request.form['num_of_pages']
     }
-    book.Book.add_book(data)
-    print("***********************", new_book)
-    return redirect('/books')
+    book_id = book.Book.add_book(data)
+    print("***********************", book_id)
+    return redirect('/books/all_books')
 
 
 # READ
