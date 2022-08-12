@@ -2,11 +2,11 @@ from flask_app.config.mysqlconnection import connectToMySQL
 from flask_app.models import author
 
 class Book:
-    db = "books_schema"
+    db = "books"
     def __init__(self, data):
         self.id = data['id'],
         self.title = data['title'],
-        self.num_of_pages = data['num_of_pages'],
+        self.num_pages = data['num_pages'],
         self.created_at = data['created_at'],
         self.updated_at = data['updated_at']
 
@@ -15,8 +15,8 @@ class Book:
     @classmethod
     def add_book(cls, data):
         query = """
-        INSERT INTO books (title, num_of_pages, created_at, updated_at)
-        VALUES %(title)s, %(num_of_pages)s, NOW(), NOW())
+        INSERT INTO books (title, num_pages, created_at, updated_at)
+        VALUES %(title)s, %(num_pages)s, NOW(), NOW())
         ;"""
         return connectToMySQL(cls.db).query_db(query, data)
 

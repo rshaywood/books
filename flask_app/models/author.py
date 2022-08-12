@@ -4,7 +4,7 @@ from flask_app.config.mysqlconnection import connectToMySQL
 from flask_app.models import book
 
 class Author:
-    db = "books_schema"
+    db = "books"
 
     def __init__(self, data):
         self.id = data['id'],
@@ -55,7 +55,7 @@ class Author:
             book_data = {
                 'id' : row['books.id'],
                 'title' : row['title'],
-                'num_of_pages' : row['num_of_pages'],
+                'num_pages' : row['num_pages'],
                 'created_at' : row['books.created_at'],
                 'updated_at' : row['books.updated_at']
             }
