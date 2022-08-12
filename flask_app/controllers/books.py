@@ -10,7 +10,7 @@ from flask_app.models import book
 def new_book():
     data = {
         'title': request.form['title'],
-        'num_of_pages': request.form['num_of_pages']
+        'num_pages': request.form['num_pages']
     }
     book_id = book.Book.add_book(data)
     print("***********************", book_id)
@@ -20,6 +20,6 @@ def new_book():
 # READ
 
 @app.route('/books/all_books')
-def show_all_books():
+def display_all_books():
     all_books = book.Book.show_all_books()
     return render_template('all_books.html', all_books=all_books)

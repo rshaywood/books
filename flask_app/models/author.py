@@ -4,7 +4,7 @@ from flask_app.config.mysqlconnection import connectToMySQL
 from flask_app.models import book
 
 class Author:
-    db = "books"
+    # db = "books"
 
     def __init__(self, data):
         self.id = data['id'],
@@ -22,7 +22,7 @@ class Author:
         INSERT INTO authors (name)
         VALUES (%(name)s)
         ;"""
-        return connectToMySQL(cls.db).query_db(query, data)
+        return connectToMySQL('books').query_db(query, data)
 
 # READ
 
@@ -30,7 +30,7 @@ class Author:
     @classmethod
     def get_all_authors(cls):
         query = "SELECT * FROM authors;"
-        authors_from_db = connectToMySQL(cls.db).query_db(query)
+        authors_from_db = connectToMySQL('books').query_db(query)
         authors = []
         for auth in authors_from_db:
             authors.append(cls(auth))
@@ -49,7 +49,7 @@ class Author:
         ON favorites.book_id = books.id
         WHERE authors.id = %(id)s
         ;"""
-        results = connectToMySQL(cls.db).query_db(query, data)
+        results = connectToMySQL('books').query_db(query, data)
         author_favorites = cls(results[0])
         for row in results:
             book_data = {
